@@ -1,0 +1,27 @@
+import type { Skill } from '../types/skill.types';
+
+export const SKILLS: Skill[] = [
+  { name: 'React', category: 'frontend' },
+  { name: 'TypeScript', category: 'frontend' },
+  { name: 'JavaScript', category: 'frontend' },
+  { name: 'HTML', category: 'frontend' },
+  { name: 'CSS', category: 'frontend' },
+  { name: 'Sass', category: 'frontend' },
+  { name: 'Tailwind CSS', category: 'frontend' },
+  { name: 'Vite', category: 'frontend' },
+  { name: 'React Router', category: 'frontend' },
+  { name: 'Node.js', category: 'backend' },
+  { name: 'Express', category: 'backend' },
+  { name: 'GraphQL', category: 'backend' },
+  { name: 'Socket.io', category: 'backend' },
+  { name: 'Zod', category: 'backend' },
+  { name: 'JWT', category: 'backend' },
+  { name: 'PostgreSQL', category: 'database' },
+  { name: 'MongoDB', category: 'database' },
+  { name: 'Redis', category: 'database' },
+  { name: 'Prisma', category: 'database' },
+  { name: 'Docker', category: 'tools' },
+  { name: 'Firebase', category: 'tools' },
+  { name: 'OpenAI API', category: 'tools' },
+  { name: 'Chrome Extensions', category: 'tools' },
+];

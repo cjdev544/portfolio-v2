@@ -1,0 +1,136 @@
+@use '../../../shared/styles/variables' as v;
+@use '../../../shared/styles/mixins' as m;
+
+.grid {
+  display: grid;
+  gap: v.$space-7;
+
+  @include m.respond-up(v.$bp-lg) {
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: start;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-5;
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: v.$space-4;
+}
+
+.infoIcon {
+  @include m.flex-center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: v.$radius-md;
+  background: rgba(124, 92, 255, 0.1);
+  color: v.$color-accent-light;
+}
+
+.infoLabel {
+  font-size: v.$fs-xs;
+  color: v.$color-text-muted;
+  margin-bottom: v.$space-1;
+}
+
+.infoValue {
+  font-size: v.$fs-base;
+  color: v.$color-text-primary;
+  font-weight: 500;
+}
+
+.form {
+  @include m.card-surface;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-5;
+  padding: v.$space-7;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2;
+}
+
+.label {
+  font-size: v.$fs-sm;
+  font-weight: 500;
+  color: v.$color-text-secondary;
+}
+
+.input {
+  @include m.focus-ring;
+  padding: v.$space-3 v.$space-4;
+  background: v.$color-bg-elevated;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  color: v.$color-text-primary;
+  transition: border-color v.$transition-fast, background v.$transition-fast;
+
+  &::placeholder {
+    color: v.$color-text-muted;
+  }
+
+  &:hover {
+    border-color: v.$color-border-strong;
+  }
+
+  &:focus {
+    border-color: v.$color-accent;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.inputError {
+  border-color: #ff6b6b;
+}
+
+.errorText {
+  font-size: v.$fs-xs;
+  color: #ff6b6b;
+}
+
+.submit {
+  align-self: flex-start;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.success {
+  @include m.flex-center;
+  gap: v.$space-2;
+  padding: v.$space-3 v.$space-4;
+  border-radius: v.$radius-sm;
+  background: rgba(52, 224, 208, 0.1);
+  border: 1px solid rgba(52, 224, 208, 0.25);
+  color: v.$color-accent-secondary;
+  font-size: v.$fs-sm;
+  font-weight: 500;
+}
+
+.errorBanner {
+  @include m.flex-center;
+  gap: v.$space-2;
+  padding: v.$space-3 v.$space-4;
+  border-radius: v.$radius-sm;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  color: #ff6b6b;
+  font-size: v.$fs-sm;
+  font-weight: 500;
+  text-align: center;
+}

@@ -1,0 +1,55 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.footer {
+  border-top: 1px solid v.$color-border;
+  padding-block: v.$space-6;
+}
+
+.inner {
+  @include m.container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: v.$space-4;
+  text-align: center;
+
+  @include m.respond-up(v.$bp-md) {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+.logo {
+  font-family: v.$font-display;
+  font-weight: 700;
+  color: v.$color-text-primary;
+}
+
+.social {
+  display: flex;
+  gap: v.$space-4;
+}
+
+.socialLink {
+  @include m.flex-center;
+  @include m.focus-ring;
+  width: 38px;
+  height: 38px;
+  border-radius: v.$radius-full;
+  border: 1px solid v.$color-border;
+  color: v.$color-text-secondary;
+  transition: color v.$transition-fast, border-color v.$transition-fast, transform v.$transition-fast;
+
+  &:hover {
+    color: v.$color-accent-light;
+    border-color: v.$color-accent;
+    transform: translateY(-2px);
+  }
+}
+
+.copy {
+  font-size: v.$fs-xs;
+  color: v.$color-text-muted;
+}

@@ -1,0 +1,55 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.button {
+  @include m.flex-center;
+  @include m.focus-ring;
+  position: relative;
+  gap: v.$space-2;
+  padding: v.$space-3 v.$space-6;
+  font-size: v.$fs-sm;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-radius: v.$radius-full;
+  white-space: nowrap;
+  transition: box-shadow v.$transition-base, background v.$transition-base, border-color v.$transition-base, color v.$transition-base;
+
+  .icon {
+    display: inline-flex;
+    transition: transform v.$transition-fast;
+  }
+
+  &:hover .icon {
+    transform: translateX(3px);
+  }
+}
+
+.primary {
+  background: v.$gradient-accent;
+  color: #08080d;
+
+  &:hover {
+    box-shadow: 0 8px 30px -6px rgba(124, 92, 255, 0.55);
+  }
+}
+
+.secondary {
+  background: transparent;
+  color: v.$color-text-primary;
+  border: 1px solid v.$color-border-strong;
+
+  &:hover {
+    border-color: v.$color-accent;
+    background: rgba(124, 92, 255, 0.08);
+  }
+}
+
+.ghost {
+  background: transparent;
+  color: v.$color-text-secondary;
+  padding-inline: v.$space-3;
+
+  &:hover {
+    color: v.$color-text-primary;
+  }
+}

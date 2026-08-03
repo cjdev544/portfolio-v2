@@ -1,0 +1,137 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.navbar {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: v.$z-nav;
+  border-bottom: 1px solid transparent;
+  transition: background v.$transition-base, border-color v.$transition-base, box-shadow v.$transition-base;
+}
+
+.scrolled {
+  @include m.glass-surface;
+  box-shadow: 0 10px 30px -20px rgba(0, 0, 0, 0.6);
+}
+
+.inner {
+  @include m.container;
+  @include m.flex-between;
+  height: 76px;
+}
+
+.logo {
+  @include m.flex-center;
+  gap: v.$space-2;
+  font-family: v.$font-display;
+  font-weight: 700;
+  font-size: v.$fs-base;
+  color: v.$color-text-primary;
+  letter-spacing: -0.01em;
+}
+
+.logoMark {
+  color: v.$color-accent;
+  font-family: v.$font-mono;
+}
+
+.desktopNav {
+  display: none;
+  gap: v.$space-6;
+
+  @include m.respond-up(v.$bp-md) {
+    display: flex;
+  }
+}
+
+.navLink {
+  @include m.focus-ring;
+  position: relative;
+  font-size: v.$fs-sm;
+  font-weight: 500;
+  color: v.$color-text-secondary;
+  padding-block: v.$space-2;
+  transition: color v.$transition-fast;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: v.$gradient-accent;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform v.$transition-base;
+  }
+
+  &:hover {
+    color: v.$color-text-primary;
+  }
+}
+
+.active {
+  color: v.$color-text-primary;
+
+  &::after {
+    transform: scaleX(1);
+  }
+}
+
+.menuToggle {
+  @include m.flex-center;
+  flex-direction: column;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+
+  @include m.respond-up(v.$bp-md) {
+    display: none;
+  }
+}
+
+.bar {
+  width: 22px;
+  height: 2px;
+  background: v.$color-text-primary;
+  border-radius: v.$radius-full;
+  transition: transform v.$transition-fast, opacity v.$transition-fast;
+}
+
+.barTopOpen {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.barMidOpen {
+  opacity: 0;
+}
+
+.barBottomOpen {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobileNav {
+  @include m.glass-surface;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  @include m.respond-up(v.$bp-md) {
+    display: none;
+  }
+}
+
+.mobileNavLink {
+  padding: v.$space-4 v.$space-5;
+  text-align: left;
+  font-size: v.$fs-base;
+  font-weight: 500;
+  color: v.$color-text-secondary;
+  border-bottom: 1px solid v.$color-border;
+}
+
+.mobileNavLink.active {
+  color: v.$color-accent-light;
+}

@@ -1,0 +1,17 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.section {
+  position: relative;
+  padding-block: v.$space-9;
+  scroll-margin-top: v.$space-8;
+}
+
+.muted {
+  background: v.$color-bg-elevated;
+  border-block: 1px solid v.$color-border;
+}
+
+.inner {
+  @include m.container;
+}

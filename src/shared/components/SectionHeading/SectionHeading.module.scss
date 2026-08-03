@@ -1,0 +1,38 @@
+@use '../../styles/variables' as v;
+
+.heading {
+  margin-bottom: v.$space-7;
+  max-width: 640px;
+
+  &[data-align='center'] {
+    margin-inline: auto;
+    text-align: center;
+  }
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: v.$color-accent-secondary;
+  margin-bottom: v.$space-3;
+}
+
+.title {
+  font-size: v.$fs-2xl;
+  color: v.$color-text-primary;
+  margin-bottom: v.$space-3;
+
+  @media (min-width: v.$bp-md) {
+    font-size: v.$fs-3xl;
+  }
+}
+
+.description {
+  color: v.$color-text-secondary;
+  font-size: v.$fs-lg;
+  line-height: 1.7;
+}

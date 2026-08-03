@@ -1,0 +1,70 @@
+@use '../../../shared/styles/variables' as v;
+@use '../../../shared/styles/mixins' as m;
+
+.grid {
+  display: grid;
+  gap: v.$space-8;
+
+  @include m.respond-up(v.$bp-lg) {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: start;
+  }
+}
+
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-4;
+  color: v.$color-text-secondary;
+  font-size: v.$fs-base;
+  line-height: 1.8;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: v.$space-5;
+  margin-top: v.$space-5;
+  padding-top: v.$space-6;
+  border-top: 1px solid v.$color-border;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-1;
+}
+
+.statNumber {
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  font-weight: 700;
+  @include m.gradient-text;
+}
+
+.statLabel {
+  font-size: v.$fs-xs;
+  color: v.$color-text-muted;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: v.$space-3;
+}
+
+.skillBadge {
+  @include m.card-surface;
+  padding: v.$space-3 v.$space-5;
+  font-family: v.$font-mono;
+  font-size: v.$fs-sm;
+  font-weight: 500;
+  color: v.$color-text-primary;
+  cursor: default;
+
+  &:hover {
+    border-color: v.$color-accent;
+    background: v.$color-bg-card-hover;
+  }
+}

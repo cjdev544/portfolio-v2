@@ -1,0 +1,134 @@
+@use '../../../shared/styles/variables' as v;
+@use '../../../shared/styles/mixins' as m;
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  @include m.flex-center;
+  flex-direction: column;
+  overflow: hidden;
+  padding-inline: v.$space-5;
+  padding-top: v.$space-8;
+}
+
+.glow {
+  position: absolute;
+  inset: 0;
+  background: v.$gradient-radial-glow;
+  pointer-events: none;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black, transparent);
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  text-align: center;
+  @include m.flex-center;
+  flex-direction: column;
+}
+
+.avatarRing {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  padding: 3px;
+  background: v.$gradient-accent;
+  margin-bottom: v.$space-5;
+  flex-shrink: 0;
+
+  @include m.respond-up(v.$bp-md) {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 3px solid v.$color-bg;
+}
+
+.badge {
+  @include m.flex-center;
+  gap: v.$space-2;
+  padding: v.$space-2 v.$space-4;
+  border-radius: v.$radius-full;
+  border: 1px solid v.$color-border-strong;
+  background: rgba(124, 92, 255, 0.06);
+  font-size: v.$fs-xs;
+  font-weight: 500;
+  color: v.$color-text-secondary;
+  margin-bottom: v.$space-6;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: v.$color-accent-secondary;
+  box-shadow: 0 0 0 3px rgba(52, 224, 208, 0.2);
+}
+
+.name {
+  font-size: v.$fs-4xl;
+  color: v.$color-text-primary;
+  margin-bottom: v.$space-3;
+
+  @include m.respond-up(v.$bp-md) {
+    font-size: v.$fs-5xl;
+  }
+}
+
+.highlight {
+  @include m.gradient-text;
+}
+
+.role {
+  font-family: v.$font-mono;
+  font-size: v.$fs-xl;
+  color: v.$color-accent-light;
+  margin-bottom: v.$space-5;
+  letter-spacing: -0.01em;
+}
+
+.tagline {
+  color: v.$color-text-secondary;
+  font-size: v.$fs-lg;
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: v.$space-7;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-4;
+  justify-content: center;
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: v.$space-6;
+  left: 50%;
+  transform: translateX(-50%);
+  color: v.$color-text-muted;
+  @include m.focus-ring;
+
+  &:hover {
+    color: v.$color-accent-light;
+  }
+}

@@ -1,0 +1,108 @@
+@use '../../../shared/styles/variables' as v;
+@use '../../../shared/styles/mixins' as m;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-6;
+
+  @include m.respond-up(v.$bp-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.card {
+  @include m.card-surface;
+  @include m.focus-ring;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  &:hover {
+    border-color: v.$color-border-strong;
+    background: v.$color-bg-card-hover;
+  }
+}
+
+.thumb {
+  @include m.flex-center;
+  height: 160px;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(10, 10, 15, 0.35) 100%);
+  }
+}
+
+.thumbInitials {
+  font-family: v.$font-display;
+  font-weight: 800;
+  font-size: v.$fs-3xl;
+  color: rgba(10, 10, 15, 0.85);
+  letter-spacing: -0.03em;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-3;
+  padding: v.$space-6;
+  flex: 1;
+}
+
+.name {
+  font-size: v.$fs-lg;
+  color: v.$color-text-primary;
+}
+
+.description {
+  font-size: v.$fs-sm;
+  color: v.$color-text-secondary;
+  line-height: 1.7;
+  flex: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-2;
+  margin-top: v.$space-2;
+}
+
+.tag {
+  font-family: v.$font-mono;
+  font-size: v.$fs-xs;
+  color: v.$color-accent-secondary;
+  background: rgba(52, 224, 208, 0.08);
+  border: 1px solid rgba(52, 224, 208, 0.18);
+  padding: v.$space-1 v.$space-3;
+  border-radius: v.$radius-full;
+}
+
+.links {
+  display: flex;
+  gap: v.$space-5;
+  margin-top: v.$space-3;
+  padding-top: v.$space-4;
+  border-top: 1px solid v.$color-border;
+}
+
+.link {
+  @include m.focus-ring;
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-1;
+  font-size: v.$fs-sm;
+  font-weight: 600;
+  color: v.$color-text-secondary;
+  transition: color v.$transition-fast, gap v.$transition-fast;
+
+  &:hover {
+    color: v.$color-accent-light;
+    gap: v.$space-2;
+  }
+}

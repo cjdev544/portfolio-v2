@@ -1,26 +1,29 @@
-import emailjs from '@emailjs/browser';
 import type { ContactFormValues } from '../types/contact.types';
 
-const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
 export async function sendContactEmail(values: ContactFormValues): Promise<void> {
-  if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+  if (!ACCESS_KEY) {
     throw new Error(
-      'Faltan las credenciales de EmailJS. Configura VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID y VITE_EMAILJS_PUBLIC_KEY en tu archivo .env.',
+      'Falta la Access Key de Web3Forms. Configura VITE_WEB3FORMS_ACCESS_KEY en tu archivo .env.',
     );
   }
 
-  await emailjs.send(
-    SERVICE_ID,
-    TEMPLATE_ID,
-    {
-      from_name: values.name,
-      from_email: values.email,
+  const response = await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      access_key: ACCESS_KEY,
+      subject: `Nuevo mensaje de ${values.name} desde el portafolio`,
+      name: values.name,
+      email: values.email,
       message: values.message,
-      to_email: 'cjdev544@gmail.com',
-    },
-    { publicKey: PUBLIC_KEY },
-  );
+    }),
+  });
+
+  const result = await response.json().catch(() => null);
+
+  if (!response.ok || !result?.success) {
+    throw new Error(result?.message ?? `Error del servidor (${response.status})`);
+  }
 }

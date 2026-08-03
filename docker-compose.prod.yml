@@ -4,9 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        VITE_EMAILJS_SERVICE_ID: ${VITE_EMAILJS_SERVICE_ID:?VITE_EMAILJS_SERVICE_ID is required}
-        VITE_EMAILJS_TEMPLATE_ID: ${VITE_EMAILJS_TEMPLATE_ID:?VITE_EMAILJS_TEMPLATE_ID is required}
-        VITE_EMAILJS_PUBLIC_KEY: ${VITE_EMAILJS_PUBLIC_KEY:?VITE_EMAILJS_PUBLIC_KEY is required}
+        VITE_WEB3FORMS_ACCESS_KEY: ${VITE_WEB3FORMS_ACCESS_KEY:?VITE_WEB3FORMS_ACCESS_KEY is required}
     container_name: portfolio
     restart: unless-stopped
     networks:

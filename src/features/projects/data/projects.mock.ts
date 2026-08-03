@@ -79,12 +79,15 @@ export const PROJECTS: Project[] = [
     description:
       'App web y extensión de Chrome que usa IA para adaptar un CV a una oferta de empleo específica, protegiendo los datos personales del candidato.',
     longDescription: [
-      'CV Optimizer toma el CV real de un candidato y una oferta de empleo, y reescribe y prioriza la experiencia relevante sin inventar tecnologías, títulos ni fechas que no estén en el original — detecta automáticamente el idioma de la oferta y responde en ese idioma aunque el CV esté en otro, y además genera un mensaje de presentación personalizado.',
+      'CV Optimizer toma el CV real de un candidato y una oferta de empleo, y reescribe cada logro con la fórmula de impacto X,Y,Z de Google —el resultado primero, no la tarea— priorizando qué proyectos y logros mostrar primero según las palabras clave de la oferta, sin inventar tecnologías, títulos ni fechas que no estén en el original. Detecta automáticamente el idioma de la oferta y responde en ese idioma aunque el CV esté en otro, y además genera un mensaje de presentación personalizado.',
       'Antes de que el CV salga hacia el proveedor de IA, un servicio de enmascarado reemplaza nombre, email, teléfono y dirección por símbolos opacos, y los restaura solo en la respuesta final: el proveedor externo nunca ve el dato real. El mismo componente de React se monta tanto en la app web como en el popup de la extensión de Chrome (Manifest V3), sin duplicar lógica entre ambos.',
+      'Redactar en el formato correcto y priorizar el contenido en la misma llamada resultó poco confiable en la práctica, así que la optimización se resolvió como un pipeline de varios pasos independientes con Structured Outputs de OpenAI: primero se redacta el contenido, después se reestructura cada logro al formato de impacto, un paso de auditoría corrige lo que no cumple la regla, y en paralelo se decide el orden de relevancia — todo ensamblado de forma determinística por código, nunca dependiendo de que el modelo "recuerde" un orden o un formato en texto libre.',
     ],
     role: 'Desarrollo full stack con arquitectura hexagonal, incluyendo la extensión de Chrome (Manifest V3)',
     year: '2026',
     highlights: [
+      'Fórmula de impacto X,Y,Z de Google: cada logro se reescribe para que el resultado aparezca primero, no la tarea',
+      'Prioriza qué proyectos y logros mostrar primero según las palabras clave de la oferta, no solo el orden original del CV',
       'Enmascarado de datos personales (PII) antes de enviar el CV a la IA, restaurados solo en el resultado final',
       'Regla de cero alucinación: nunca inventa experiencia, tecnologías ni fechas',
       'Detecta el idioma de la oferta y responde en ese idioma, aunque el CV esté en otro',

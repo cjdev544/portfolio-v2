@@ -21,8 +21,18 @@ export function Navbar() {
   const activeId = useActiveSection(pathname === '/' ? NAV_LINKS.map((link) => link.id) : [])
 
   function handleNavigate(id: string) {
-    goToSection(id)
-    setMenuOpen(false)
+    if (menuOpen) {
+      // Closing the mobile dropdown animates its height, which changes the
+      // page layout. Some mobile browsers (notably iOS Safari) silently
+      // cancel an in-progress smooth scrollIntoView if the layout shifts
+      // while it's animating — so the scroll must wait until the close
+      // transition (see Navbar.module.scss / the AnimatePresence duration
+      // below) has actually finished, not fire in the same tick as it.
+      setMenuOpen(false)
+      window.setTimeout(() => goToSection(id), 300)
+    } else {
+      goToSection(id)
+    }
   }
 
   return (

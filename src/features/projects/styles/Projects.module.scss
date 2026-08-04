@@ -26,9 +26,9 @@
 }
 
 .thumb {
-  @include m.flex-center;
   height: 160px;
   position: relative;
+  background: v.$color-bg-elevated;
 
   &::after {
     content: '';
@@ -38,12 +38,13 @@
   }
 }
 
-.thumbInitials {
-  font-family: v.$font-display;
-  font-weight: 800;
-  font-size: v.$fs-3xl;
-  color: rgba(10, 10, 15, 0.85);
-  letter-spacing: -0.03em;
+.thumbImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .body {

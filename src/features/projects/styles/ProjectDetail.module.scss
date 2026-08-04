@@ -130,18 +130,21 @@
 }
 
 .thumb {
-  @include m.flex-center;
+  position: relative;
+  overflow: hidden;
   border-radius: v.$radius-lg;
   aspect-ratio: 4 / 3;
   width: 100%;
+  background: v.$color-bg-elevated;
 }
 
-.thumbInitials {
-  font-family: v.$font-display;
-  font-weight: 800;
-  font-size: v.$fs-3xl;
-  color: rgba(10, 10, 15, 0.85);
-  letter-spacing: -0.03em;
+.thumbImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .body {

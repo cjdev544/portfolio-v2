@@ -68,8 +68,6 @@ export function ProjectDetail() {
     );
   }
 
-  const [from, to] = project.gradient;
-
   return (
     <Section id="project-detail">
       <motion.div initial="hidden" animate="show" variants={fadeUp}>
@@ -110,14 +108,13 @@ export function ProjectDetail() {
             </div>
           </div>
 
-          <div className={styles.thumb} style={{ background: `linear-gradient(135deg, ${from}, ${to})` }}>
-            <span className={styles.thumbInitials}>
-              {project.name
-                .split(/(?=[A-Z])/)
-                .map((part) => part[0])
-                .join('')
-                .slice(0, 2)}
-            </span>
+          <div className={styles.thumb}>
+            <img
+              src={project.coverImage}
+              alt={`Vista previa de ${project.name}`}
+              className={styles.thumbImage}
+              loading="lazy"
+            />
           </div>
         </div>
 

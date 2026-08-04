@@ -6,9 +6,9 @@ export interface Project {
   role: string;
   year: string;
   highlights: string[];
+  coverImage: string;
   images: string[];
   tags: string[];
   demoUrl: string;
   repoUrl: string;
-  gradient: [string, string];
 }

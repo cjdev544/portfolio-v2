@@ -14,7 +14,6 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const [from, to] = project.gradient;
   const navigate = useNavigate();
 
   function openDetail() {
@@ -37,14 +36,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
         }
       }}
     >
-      <div className={styles.thumb} style={{ background: `linear-gradient(135deg, ${from}, ${to})` }}>
-        <span className={styles.thumbInitials}>
-          {project.name
-            .split(/(?=[A-Z])/)
-            .map((part) => part[0])
-            .join('')
-            .slice(0, 2)}
-        </span>
+      <div className={styles.thumb}>
+        <img
+          src={project.coverImage}
+          alt={`Vista previa de ${project.name}`}
+          className={styles.thumbImage}
+          loading="lazy"
+        />
       </div>
 
       <div className={styles.body}>

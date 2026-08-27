@@ -8,6 +8,7 @@ import {
   FiChevronLeft,
   FiChevronRight,
   FiGithub,
+  FiLock,
   FiUser,
   FiX,
 } from 'react-icons/fi';
@@ -102,9 +103,15 @@ export function ProjectDetail() {
               <a href={project.demoUrl} target="_blank" rel="noreferrer" className={styles.primaryAction}>
                 Ver demo <FiArrowUpRight size={16} />
               </a>
-              <a href={project.repoUrl} target="_blank" rel="noreferrer" className={styles.secondaryAction}>
-                Código <FiGithub size={16} />
-              </a>
+              {project.repoUrl ? (
+                <a href={project.repoUrl} target="_blank" rel="noreferrer" className={styles.secondaryAction}>
+                  Código <FiGithub size={16} />
+                </a>
+              ) : (
+                <span className={styles.secondaryActionDisabled}>
+                  Código privado <FiLock size={14} />
+                </span>
+              )}
             </div>
           </div>
 

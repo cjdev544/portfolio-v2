@@ -129,6 +129,21 @@
   }
 }
 
+.secondaryActionDisabled {
+  @include m.flex-center;
+  gap: v.$space-2;
+  padding: v.$space-3 v.$space-6;
+  font-size: v.$fs-sm;
+  font-weight: 600;
+  border-radius: v.$radius-full;
+  white-space: nowrap;
+  background: transparent;
+  color: v.$color-text-secondary;
+  border: 1px solid v.$color-border;
+  opacity: 0.6;
+  cursor: default;
+}
+
 .thumb {
   position: relative;
   overflow: hidden;

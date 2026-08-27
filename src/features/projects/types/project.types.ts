@@ -10,5 +10,6 @@ export interface Project {
   images: string[];
   tags: string[];
   demoUrl: string;
-  repoUrl: string;
+  /** Ausente = repo privado; la UI muestra "Código privado" en vez de un enlace. */
+  repoUrl?: string;
 }

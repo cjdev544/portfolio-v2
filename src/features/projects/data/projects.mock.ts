@@ -2,6 +2,33 @@ import type { Project } from '../types/project.types';
 
 export const PROJECTS: Project[] = [
   {
+    id: 'fisiowaas',
+    name: 'FisioWaaS',
+    description:
+      'Plataforma Website-as-a-Service multi-tenant para clínicas de fisioterapia: cada cliente tiene su web, agenda de citas online, cobros y panel de gestión, sin tocar código ni contratar a un desarrollador.',
+    longDescription: [
+      'FisioWaaS resuelve el mismo problema que ya resuelven Fresha o Booksy, pero pensado y construido desde cero para fisioterapia: un fisioterapeuta autónomo (o una clínica con varios profesionales) elige una de 11 plantillas de diseño, rellena su información desde un panel propio ("Mi sitio") y en minutos tiene una web real con SEO local, reserva de citas 24/7, recordatorios automáticos y cobro de depósito en la reserva — todo en el mismo sistema. Un panel de agencia aparte da de alta clientes nuevos, gestiona su plan y su facturación mensual recurrente.',
+      'Es multi-tenant de verdad: todos los clientes comparten el mismo backend (Strapi) y la misma base de datos, pero el aislamiento entre ellos no depende solo de que el código nunca se equivoque de filtro — cada tabla sensible tiene Row-Level Security nativa de Postgres, así que aunque un desarrollador (o una IA) olvide un filtro de tenant en el futuro, la propia base de datos rechaza devolver filas de otro cliente. Los pagos de depósito de cada cita van directos a la cuenta bancaria del propio fisioterapeuta vía Stripe Connect, nunca a una cuenta intermedia de la plataforma.',
+      'El resto de la operación diaria también está automatizado: recordatorios por SMS/WhatsApp antes de cada cita, aviso al terapeuta cuando entra una reserva nueva, solicitud automática de reseña tras la visita, bonos de sesiones prepagadas, cuentas de equipo con roles (recepción/terapeuta) para clínicas con varios profesionales, sitio disponible en inglés con traducción asistida por IA, y un blog con borrador de artículo generado por IA que el propio cliente revisa antes de publicar.',
+    ],
+    role: 'Desarrollo full stack en solitario: backend Strapi (multi-tenant, RLS, integraciones) y frontend Next.js (11 plantillas, panel de cliente y de agencia)',
+    year: '2026',
+    highlights: [
+      'Multi-tenant real con Row-Level Security de Postgres: el aislamiento entre clientes no depende solo del código de la aplicación',
+      'Reserva de citas online con depósito vía Stripe Connect, pagado directo a la cuenta del propio fisioterapeuta',
+      '11 plantillas de diseño seleccionables, cada una con su propia identidad visual, listas para producción',
+      'Recordatorios y avisos automáticos por SMS y WhatsApp Business API (con SMS de respaldo si WhatsApp falla)',
+      'Cuentas de equipo con roles (propietario, recepción, terapeuta) para clínicas con varios profesionales',
+      'Panel de agencia aparte: alta de clientes nuevos, planes, facturación recurrente y métricas de todos los sitios',
+      'Contenido asistido por IA: borrador de blog, biografías de profesionales, respuestas a reseñas y traducción al inglés',
+      'Backups automáticos con réplica externa y CI/CD con despliegue automático a un VPS dedicado',
+    ],
+    coverImage: '/projects/fisiowaas/cover.jpg',
+    images: ['/projects/fisiowaas/1.jpg', '/projects/fisiowaas/2.jpg'],
+    tags: ['Next.js', 'TypeScript', 'Strapi', 'PostgreSQL', 'Stripe'],
+    demoUrl: 'https://cjsalud.com',
+  },
+  {
     id: 'transcribemind',
     name: 'TranscribeMind',
     description:

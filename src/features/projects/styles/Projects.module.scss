@@ -107,3 +107,14 @@
     gap: v.$space-2;
   }
 }
+
+.linkDisabled {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-1;
+  font-size: v.$fs-sm;
+  font-weight: 600;
+  color: v.$color-text-secondary;
+  opacity: 0.55;
+  cursor: default;
+}

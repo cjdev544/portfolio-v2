@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FiArrowUpRight, FiGithub } from 'react-icons/fi';
+import { FiArrowUpRight, FiGithub, FiLock } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import type { Project } from '../types/project.types';
 import styles from '../styles/Projects.module.scss';
@@ -67,15 +67,21 @@ export function ProjectCard({ project }: ProjectCardProps) {
           >
             Demo <FiArrowUpRight size={15} />
           </a>
-          <a
-            href={project.repoUrl}
-            target="_blank"
-            rel="noreferrer"
-            className={styles.link}
-            onClick={(e) => e.stopPropagation()}
-          >
-            Código <FiGithub size={15} />
-          </a>
+          {project.repoUrl ? (
+            <a
+              href={project.repoUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.link}
+              onClick={(e) => e.stopPropagation()}
+            >
+              Código <FiGithub size={15} />
+            </a>
+          ) : (
+            <span className={styles.linkDisabled} onClick={(e) => e.stopPropagation()}>
+              Código privado <FiLock size={13} />
+            </span>
+          )}
         </div>
       </div>
     </motion.article>

@@ -9,8 +9,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Debug temporal (hash del path, sin exponer el secreto)
-        run: printf '%s' "${{ secrets.VPS_PROJECT_PATH }}" | md5sum
       - name: Deploy por SSH al VPS
         uses: appleboy/ssh-action@v1.2.0
         with:

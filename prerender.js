@@ -8,7 +8,7 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(root, 'dist');
 
 const template = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
-const { render, routes, getMeta } = await import('./dist-ssr/entry-server.js');
+const { render, routes, getMeta, notFound } = await import('./dist-ssr/entry-server.js');
 
 function escapeAttr(value) {
   return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -35,8 +35,13 @@ function applyMeta(html, meta) {
   return html;
 }
 
-// Shell vacío para rutas que no se prerenderizan (nginx lo usa como fallback).
-fs.writeFileSync(path.join(distDir, 'spa.html'), template.replace('<!--app-html-->', ''));
+// Página 404: nginx la sirve con status 404 para cualquier ruta que no exista.
+const notFoundHtml = template
+  .replace(/<title>[^<]*<\/title>/, () => `<title>${escapeAttr(notFound.title)}</title>`)
+  .replace('</head>', '  <meta name="robots" content="noindex" />\n  </head>')
+  .replace('<!--app-html-->', () => render(notFound.url));
+fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml);
+console.log(`prerender: 404 -> dist${path.sep}404.html`);
 
 for (const url of routes) {
   const html = applyMeta(template, getMeta(url)).replace('<!--app-html-->', () => render(url));

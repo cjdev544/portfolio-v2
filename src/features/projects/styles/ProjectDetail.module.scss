@@ -316,24 +316,3 @@
 .lightboxNext {
   right: v.$space-5;
 }
-
-.notFound {
-  text-align: center;
-  padding-block: v.$space-8;
-
-  h1 {
-    font-size: v.$fs-3xl;
-    color: v.$color-text-primary;
-    margin-bottom: v.$space-3;
-  }
-
-  p {
-    color: v.$color-text-secondary;
-    margin-bottom: v.$space-6;
-  }
-
-  .backLink {
-    justify-content: center;
-    margin-bottom: 0;
-  }
-}

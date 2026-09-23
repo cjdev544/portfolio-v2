@@ -7,6 +7,7 @@ import { Hero } from './features/home';
 import { About } from './features/about';
 import { Projects, ProjectDetail } from './features/projects';
 import { Contact } from './features/contact';
+import { NotFound } from './features/not-found';
 
 function Home() {
   const location = useLocation();
@@ -47,6 +48,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/proyectos/:id" element={<ProjectDetail />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

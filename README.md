@@ -41,6 +41,10 @@ src/
       types/
       styles/
       index.ts
+    not-found/
+      components/        # NotFound.tsx (ruta "*" y proyecto inexistente)
+      styles/
+      index.ts
   shared/
     components/            # Button, Navbar, Footer, Section, SectionHeading
     hooks/                  # useActiveSection, useScrollProgress

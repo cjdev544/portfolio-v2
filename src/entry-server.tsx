@@ -3,7 +3,10 @@ import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import App from './App.tsx';
 import { PROJECTS } from './features/projects/data/projects.mock';
-import { pageTitle } from './shared/hooks/useDocumentTitle';
+import { NOT_FOUND_TITLE, pageTitle } from './shared/hooks/useDocumentTitle';
+
+/** Página 404 (dist/404.html): se renderiza con una ruta que no existe. */
+export const notFound = { url: '/404', title: NOT_FOUND_TITLE };
 
 const SITE_URL = 'https://cjdev544.com';
 

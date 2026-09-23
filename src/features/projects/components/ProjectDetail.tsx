@@ -14,7 +14,8 @@ import {
 } from 'react-icons/fi';
 import { Section } from '../../../shared/components/Section';
 import { useSectionNav } from '../../../shared/hooks/useSectionNav';
-import { pageTitle, useDocumentTitle } from '../../../shared/hooks/useDocumentTitle';
+import { NOT_FOUND_TITLE, pageTitle, useDocumentTitle } from '../../../shared/hooks/useDocumentTitle';
+import { NotFound } from '../../not-found';
 import { PROJECTS } from '../data/projects.mock';
 import styles from '../styles/ProjectDetail.module.scss';
 
@@ -29,7 +30,7 @@ export function ProjectDetail() {
   const project = PROJECTS.find((p) => p.id === id);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  useDocumentTitle(pageTitle(project ? project.name : 'Proyecto no encontrado'));
+  useDocumentTitle(project ? pageTitle(project.name) : NOT_FOUND_TITLE);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,18 +59,9 @@ export function ProjectDetail() {
     };
   }, [lightboxIndex, project]);
 
+  // Mismo marcado que la ruta "*", para que hidrate sobre el 404.html prerenderizado.
   if (!project) {
-    return (
-      <Section id="project-detail">
-        <div className={styles.notFound}>
-          <h1>Proyecto no encontrado</h1>
-          <p>El proyecto que buscas no existe o fue movido.</p>
-          <button className={styles.backLink} onClick={() => goToSection('projects')}>
-            <FiArrowLeft size={16} /> Volver a proyectos
-          </button>
-        </div>
-      </Section>
-    );
+    return <NotFound />;
   }
 
   return (

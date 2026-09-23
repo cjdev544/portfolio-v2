@@ -7,6 +7,8 @@ export function pageTitle(name: string): string {
   return `${name} · Jefferson Campos`;
 }
 
+export const NOT_FOUND_TITLE = pageTitle('Página no encontrada');
+
 /**
  * Mantiene document.title sincronizado al navegar en cliente. El HTML
  * prerenderizado ya trae el título correcto en la carga inicial.

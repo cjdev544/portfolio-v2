@@ -15,8 +15,7 @@ const app = (
 );
 
 // Las rutas prerenderizadas llegan con el HTML ya dentro de #root y se hidratan.
-// En dev, o en rutas desconocidas servidas con spa.html, #root llega vacío y se
-// renderiza en cliente como un SPA normal.
+// En dev #root llega vacío y se renderiza en cliente como un SPA normal.
 if (container.firstElementChild) {
   hydrateRoot(container, app);
 } else {

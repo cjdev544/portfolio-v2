@@ -8,7 +8,7 @@ const root = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(root, 'dist');
 
 const template = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
-const { render, routes, getMeta, notFound } = await import('./dist-ssr/entry-server.js');
+const { render, routes, getMeta, notFound, SITE_URL } = await import('./dist-ssr/entry-server.js');
 
 function escapeAttr(value) {
   return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -51,3 +51,12 @@ for (const url of routes) {
   fs.writeFileSync(file, html);
   console.log(`prerender: ${url} -> ${path.relative(root, file)}`);
 }
+
+// Sitemap con las mismas rutas prerenderizadas (robots.txt, en public/, apunta aquí).
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${routes.map((url) => `  <url><loc>${escapeAttr(SITE_URL + url)}</loc></url>`).join('\n')}
+</urlset>
+`;
+fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap);
+console.log(`prerender: sitemap -> dist${path.sep}sitemap.xml (${routes.length} URLs)`);

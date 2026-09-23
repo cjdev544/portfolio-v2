@@ -8,7 +8,7 @@ import { NOT_FOUND_TITLE, pageTitle } from './shared/hooks/useDocumentTitle';
 /** Página 404 (dist/404.html): se renderiza con una ruta que no existe. */
 export const notFound = { url: '/404', title: NOT_FOUND_TITLE };
 
-const SITE_URL = 'https://cjdev544.com';
+export const SITE_URL = 'https://cjdev544.com';
 
 export interface PageMeta {
   title: string;

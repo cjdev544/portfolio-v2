@@ -47,7 +47,8 @@ src/
     utils/                  # scrollTo
     styles/                 # _variables.scss, _mixins.scss, global.scss
   App.tsx
-  main.tsx
+  entry-client.tsx         # Hidrata el HTML prerenderizado (o renderiza en cliente)
+  entry-server.tsx         # render(url), rutas y meta por página para el prerender
 ```
 
 Cada feature expone su API pública a través de un `index.ts`, evitando que otras
@@ -107,7 +108,8 @@ npm install
 # Levantar servidor de desarrollo (http://localhost:5173)
 npm run dev
 
-# Compilar para producción (genera /dist)
+# Compilar para producción (genera /dist con un HTML prerenderizado por ruta:
+# / y /proyectos/<id>, vía entry-server.tsx + prerender.js)
 npm run build
 
 # Previsualizar el build de producción

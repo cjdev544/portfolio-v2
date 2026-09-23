@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { Navbar, Footer } from './shared/components';
 import { scrollToSection } from './shared/utils/scrollTo';
+import { DEFAULT_TITLE, useDocumentTitle } from './shared/hooks/useDocumentTitle';
 import { Hero } from './features/home';
 import { About } from './features/about';
 import { Projects, ProjectDetail } from './features/projects';
@@ -10,6 +11,8 @@ import { Contact } from './features/contact';
 function Home() {
   const location = useLocation();
   const navigate = useNavigate();
+
+  useDocumentTitle(DEFAULT_TITLE);
 
   useEffect(() => {
     const state = location.state as { scrollTo?: string } | null;

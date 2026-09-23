@@ -14,6 +14,7 @@ import {
 } from 'react-icons/fi';
 import { Section } from '../../../shared/components/Section';
 import { useSectionNav } from '../../../shared/hooks/useSectionNav';
+import { pageTitle, useDocumentTitle } from '../../../shared/hooks/useDocumentTitle';
 import { PROJECTS } from '../data/projects.mock';
 import styles from '../styles/ProjectDetail.module.scss';
 
@@ -27,6 +28,8 @@ export function ProjectDetail() {
   const goToSection = useSectionNav();
   const project = PROJECTS.find((p) => p.id === id);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useDocumentTitle(pageTitle(project ? project.name : 'Proyecto no encontrado'));
 
   useEffect(() => {
     window.scrollTo(0, 0);

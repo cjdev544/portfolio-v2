@@ -20,6 +20,14 @@ function setMetaContent(html, attr, key, value) {
   return html.replace(re, (_, start, end) => `${start}${escapeAttr(value)}${end}`);
 }
 
+// framer-motion renderiza el estado `initial` de las animaciones de entrada como
+// style="opacity:0;transform:…", y los lectores que no ejecutan JS verían el
+// contenido oculto. Se sustituye por data-reveal: index.html solo lo oculta
+// cuando hay JS (clase .js en <html>) y framer-motion lo anima al hidratar.
+function revealWithoutJs(html) {
+  return html.replace(/ style="opacity:0(;[^"]*)?"/g, ' data-reveal=""');
+}
+
 function applyMeta(html, meta) {
   if (!meta) return html;
 
@@ -39,12 +47,12 @@ function applyMeta(html, meta) {
 const notFoundHtml = template
   .replace(/<title>[^<]*<\/title>/, () => `<title>${escapeAttr(notFound.title)}</title>`)
   .replace('</head>', '  <meta name="robots" content="noindex" />\n  </head>')
-  .replace('<!--app-html-->', () => render(notFound.url));
+  .replace('<!--app-html-->', () => revealWithoutJs(render(notFound.url)));
 fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml);
 console.log(`prerender: 404 -> dist${path.sep}404.html`);
 
 for (const url of routes) {
-  const html = applyMeta(template, getMeta(url)).replace('<!--app-html-->', () => render(url));
+  const html = applyMeta(template, getMeta(url)).replace('<!--app-html-->', () => revealWithoutJs(render(url)));
   const file = path.join(distDir, url, 'index.html');
 
   fs.mkdirSync(path.dirname(file), { recursive: true });

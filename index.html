@@ -31,6 +31,12 @@
       rel="stylesheet"
     />
     <title>Jefferson Campos · Fullstack Developer</title>
+
+    <!-- El HTML prerenderizado marca con data-reveal lo que tiene animación de
+         entrada. Solo se oculta si hay JS, para que framer-motion lo anime al
+         hidratar; sin JS el contenido se ve tal cual. Ver prerender.js. -->
+    <script>document.documentElement.classList.add('js')</script>
+    <style>.js [data-reveal] { opacity: 0; }</style>
   </head>
   <body>
     <div id="root"><!--app-html--></div>
